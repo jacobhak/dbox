@@ -10,6 +10,8 @@ gem 'sqlite3'
 gem 'paperclip'
 
 gem 'devise'
+gem 'cancan'
+
 gem 'haml'
 
 # Gems used only for assets and not required

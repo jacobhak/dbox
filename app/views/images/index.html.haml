@@ -3,4 +3,4 @@
 %ul
   - @images.each do |image|
     %li
-      = image.attachment_file_name
+      = link_to image.attachment_file_name, image

@@ -30,6 +30,21 @@ describe ImagesController do
         expect(response).to be_success
       end
     end
+
+    describe "GET #show" do
+      it "successfully return the image if the image exists" do
+        img1 = FactoryGirl.create(:image)
+        img1.persisted?.should be_true
+        get :show, {id: img1}
+        assigns(:image).should eq(img1)
+
+      end
+      it "successfully render show template if image exists" do
+        img1 = FactoryGirl.create(:image)
+        get :show, {id: img1}
+        expect(response).to be_success
+      end
+    end
   end
 
   describe "NOT signed in should not access" do
@@ -40,6 +55,12 @@ describe ImagesController do
 
     it "GET #new" do
       get :new
+      expect(response).not_to be_success
+    end
+
+    it "GET #show" do
+      img1 = FactoryGirl.create(:image)
+      get :show, {id: img1}
       expect(response).not_to be_success
     end
   end

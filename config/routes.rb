@@ -2,7 +2,7 @@ Dbox::Application.routes.draw do
   devise_for :users
 
 
-  resources :images, only: [ :index, :new, :create ]
+  resources :images, only: [ :index, :new, :create, :show ]
 
   root to: "static#index"
 

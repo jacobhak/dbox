@@ -1,0 +1,5 @@
+%h3
+  Upload a new file
+= form_for @image do |f|
+  = f.file_field :attachment
+  = f.submit 'Upload'

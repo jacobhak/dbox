@@ -1,0 +1,6 @@
+= link_to 'New', new_image_path
+
+%ul
+  - @images.each do |image|
+    %li
+      = image.attachment_file_name

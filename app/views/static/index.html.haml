@@ -2,4 +2,5 @@
 	= link_to "signin", new_user_session_path
 - else
 	= link_to "signout", destroy_user_session_path, method: :delete
-	jaaa
+	= current_user.email
+	= link_to 'Images', images_path

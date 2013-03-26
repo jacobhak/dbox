@@ -9,8 +9,9 @@ describe Image do
 
   it "has fields" do
 
-  	image = Image.new(attachment: File.join(Rails.root, 'spec', 'fixtures', 'bacon.jpg'))
+  	image = Image.new(attachment: File.new(Rails.root + 'spec/fixtures/bacon.jpg'))
 
-  	image.attachment_file_name.should eq("image1")
+  	image.attachment_file_name.should eq("bacon")
+  	
   end
 end

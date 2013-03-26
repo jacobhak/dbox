@@ -6,8 +6,7 @@
   = javascript_include_tag "application"
   = csrf_meta_tags
 %body
-  .title
-    dbox
+  = render 'shared/header'
   %p.alert
     = flash[:alert]
   %p.notice

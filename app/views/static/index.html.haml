@@ -1,6 +1,1 @@
-- unless user_signed_in?
-	= link_to "signin", new_user_session_path
-- else
-	= link_to "signout", destroy_user_session_path, method: :delete
-	= current_user.email
-	= link_to 'Images', images_path
+= link_to 'Images', images_path

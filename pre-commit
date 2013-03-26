@@ -1,0 +1,63 @@
+#!/usr/bin/env ruby
+ 
+# pre-commit git hook
+# will run rspec if and only if current branch is master
+# script adapted from http://book.git-scm.com/5_git_hooks.html
+ 
+# source : https://gist.github.com/1141992
+ 
+NO_COMMIT_MESSAGE = "\aDID NOT COMMIT YOUR FILES!"
+FORMAT = :html
+
+puts "Do a pre-commit check"
+ 
+# @params : Sym :html or other
+def run_tests(format = :txt)
+  format = format.to_sym
+  html_path = "tmp/git_hook_spec_results.#{format}"
+  `touch #{html_path}`
+  # run the spec. send progress to screen and save results in html format to html_path if format is :html
+  unless `rake -Tspec`.empty?
+    puts "running rake spec"
+    `rake spec SPEC_OPTS="-c #{ "-f h " if format == :html } -o #{html_path}" 1> /dev/null 2>/dev/null`
+  else
+    puts "running rspec"
+    `rspec -c #{ "-f h " if format == :html } -o #{html_path} spec/ 1> /dev/null 2>/dev/null`
+  end
+ 
+  # find out how many errors were found
+  results = open(html_path).read
+  examples = results.match(/(\d+) examples?/)[0].to_i rescue 0
+  failures = results.match(/(\d+) failures?/)[0].to_i rescue 0
+  pending = results.match(/(\d+) pending/)[0].to_i rescue 0
+ 
+  if failures.zero?
+    puts "0 failures! #{examples} run, #{pending} pending"
+  else
+    puts NO_COMMIT_MESSAGE if format == :html
+    puts "View spec results at #{File.expand_path(html_path)}" if format == :html
+    puts "eg. use Firefox to see it : firefox #{File.expand_path(html_path)}" if format == :html
+    puts
+    puts "#{failures} failures! #{examples} run, #{pending} pending" if format == :html
+ 
+    puts; puts results unless format == :html
+    puts; puts NO_COMMIT_MESSAGE unless format == :html 
+ 
+    exit 1
+  end
+end
+ 
+ 
+ 
+#get current_branch
+list_of_branches = `git branch`.split("\n")
+current_branch = list_of_branches.find {|string| string.match /^\* /}.sub("* ", "")
+ 
+if current_branch == 'master'
+  puts "we are on branch master, running tests----"
+  defined?(FORMAT) ? run_tests(FORMAT) : run_tests
+  puts "---------------------------------end tests"
+else
+	puts "Not on master branch, not running tests"
+  puts ""
+end

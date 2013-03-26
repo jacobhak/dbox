@@ -1,6 +1,9 @@
 Dbox::Application.routes.draw do
   devise_for :users
 
+
+  resources :images, only: :index
+
   root to: "static#index"
 
   # The priority is based upon order of creation:

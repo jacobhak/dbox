@@ -1,0 +1,7 @@
+%h3
+  Edit group
+
+= form_for @group do |f|
+  Name: 
+  = f.text_field :name
+  = f.submit 'Save'

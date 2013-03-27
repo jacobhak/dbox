@@ -1,8 +1,9 @@
 Dbox::Application.routes.draw do
   devise_for :users
 
-
-  resources :images, only: [ :index, :new, :create, :show ]
+  resources :groups, only: [ :index, :new, :show, :create, :edit, :update ]
+  
+  resources :images, only: [ :index, :new, :show, :create ]
 
   root to: "static#index"
 

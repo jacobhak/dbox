@@ -1,0 +1,13 @@
+%h3
+  Group
+
+= link_to 'Edit', edit_group_path(@group)
+
+Name: 
+= @group.name
+
+
+%ul
+  - @group.users.each do |user|
+    = user.email
+

@@ -23,5 +23,5 @@ Name:
 %ul.images
   - @group.images.each do |image|
     %li
-      = image.file_name
+      = image_tag image.attachment.url
 

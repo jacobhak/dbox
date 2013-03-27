@@ -15,6 +15,9 @@ class ImagesController < ApplicationController
 
   def create
   	@image = Image.create(params[:image])
+    puts current_user
+    @image.user = current_user
+    @image.save
 
   	redirect_to images_path
   end

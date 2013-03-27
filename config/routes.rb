@@ -1,8 +1,12 @@
 Dbox::Application.routes.draw do
   devise_for :users
 
-  resources :groups, only: [ :index, :new, :show, :create, :edit, :update ]
-  
+  resources :groups, only: [ :index, :new, :show, :create, :edit, :update ] do
+    member do
+      post 'invite'
+    end
+  end
+
   resources :images, only: [ :index, :new, :show, :create ]
 
   root to: "static#index"

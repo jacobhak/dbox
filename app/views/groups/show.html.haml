@@ -6,7 +6,14 @@
 Name: 
 = @group.name
 
-
+%h4
+  Add member to group:
+= form_tag invite_group_path do
+  = text_field_tag :email
+  = submit_tag 'Invite'
+  
+%h4
+  All members
 %ul
   - @group.users.each do |user|
     = user.email

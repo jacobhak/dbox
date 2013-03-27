@@ -15,4 +15,17 @@ class GroupsController < ApplicationController
     group.update_attributes(params[:group])
     redirect_to group
   end
+
+  def invite
+    group = Group.find(params[:id])
+    puts params[:email]
+
+    user = User.find_by_email(params[:email])
+
+    unless user.nil?
+      group.users << user
+    end
+
+    redirect_to group
+  end
 end

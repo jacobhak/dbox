@@ -5,4 +5,6 @@ class Image < ActiveRecord::Base
   has_attached_file :attachment
 
   validates_with AttachmentPresenceValidator, attributes: :attachment
+
+  belongs_to :user
 end

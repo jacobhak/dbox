@@ -18,3 +18,10 @@ Name:
   - @group.users.each do |user|
     = user.email
 
+%h4
+  All attachments to this group
+%ul.images
+  - @group.images.each do |image|
+    %li
+      = image.file_name
+

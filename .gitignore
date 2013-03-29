@@ -17,3 +17,4 @@
 /coverage/*
 
 /public/system/images/attachments/*
+*.swp

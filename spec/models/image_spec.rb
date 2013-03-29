@@ -16,4 +16,12 @@ describe Image do
 	  	image.valid?.should be_false
   	end
   end
+
+  describe "TAGS" do
+    it "can has" do
+      image = FactoryGirl.create(:image)
+
+      image.valid?.should be_true
+    end
+  end
 end

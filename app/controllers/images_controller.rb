@@ -21,4 +21,13 @@ class ImagesController < ApplicationController
 
   	redirect_to images_path
   end
+
+  def tag
+    @image = Image.find(params[:id])
+    tag = Tag.find_or_create_by_name(params[:name])
+
+    @image.tags << tag
+
+    redirect_to @image
+  end
 end

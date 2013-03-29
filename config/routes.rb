@@ -7,7 +7,11 @@ Dbox::Application.routes.draw do
     end
   end
 
-  resources :images, only: [ :index, :new, :show, :create ]
+  resources :images, only: [ :index, :new, :show, :create ] do
+    member do 
+      post 'tag'
+    end
+  end
 
   root to: "static#index"
 

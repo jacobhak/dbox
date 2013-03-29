@@ -1,8 +1,23 @@
 %h3
-	This is an image
+  This is an image
 File name:
 = @image.attachment_file_name
 
 %br
 The image:
 = image_tag @image.attachment.url
+
+
+%h4
+  All tags on this image
+
+= form_tag tag_image_path(@image) do
+  = label_tag "tag it:"
+  = text_field_tag :name
+  = submit_tag "Tag it!"
+  
+%ul.images
+  - @image.tags.each do |tag|
+    %li
+      = tag.name
+

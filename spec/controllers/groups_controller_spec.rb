@@ -66,6 +66,7 @@ describe GroupsController do
       it "successfully" do
         g1 = FactoryGirl.create(:group)
         g1.persisted?.should be_true
+        
         get :edit, { id: g1 }
         expect(response).to be_success
         expect(response.code).to eq("200")

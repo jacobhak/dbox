@@ -3,13 +3,21 @@
   %title
     Dbox
   = stylesheet_link_tag    "application", :media => "all"
+  = stylesheet_link_tag    "http://fonts.googleapis.com/css?family=Tangerine"
+  = stylesheet_link_tag    "http://fonts.googleapis.com/css?family=Lato"
+  = stylesheet_link_tag    "http://fonts.googleapis.com/css?family=MoseoSans"
+  = stylesheet_link_tag    "http://fonts.googleapis.com/css?family=Fontin"
+
   = javascript_include_tag "application"
   = csrf_meta_tags
 %body
   = render 'shared/header'
-  %p.alert
-    = flash[:alert]
-  %p.notice
-    = flash[:notice]
-  
-= yield
+
+  .flash
+    %p.alert
+      = flash[:alert]
+    %p.notice
+      = flash[:notice]
+
+.content  
+  = yield
